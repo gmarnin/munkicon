@@ -31,7 +31,8 @@ class PPPCPConditions(object):
                     for _payload, _values in _payloads.items():
                         _identifier = _values.get('Identifier', None)
 
-                        _result.add(_identifier)
+                        if _identifier:
+                            _result.add(_identifier)
 
         result['pppcp_payloads'] = list(_result)
 
