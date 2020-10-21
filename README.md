@@ -69,11 +69,43 @@ Useful in determining if a package in a manifest should be made available (or no
 
 ### com.github.carlashley.munkicon.pppcp.py
 Useful in determining if a package in a manifest should be made available based on whether any MDM deployed PPPCP payloads exist for a specifc Bundle ID or path. For example, the user experience for a particular app might be cumbersome if it is installed before a PPPCP payload is pushed to the client via MDM.
-- Generates one condition:
-- - `pppcp_payloads` that contains an array of Bundle ID's or paths for any PPPCP payloads deployed via MDM. Note that this does not care if the payload is an allow or deny type. The desired outcome is simply to know a payload exists for the Bundle ID or path.
+
+Each condition generates an array of strings that indicate if the PPPCP payload is `allow`, `deny`, or `allow_user`. The format returned is either:
+- `allow,org.example.foo` or `allow,/Applications/Example.app`
+- `deny,org.example.foo` or `deny,/Applications/Example.app`
+- `allow_user,org.example.foo` this is only for `ListenEvent` and `ScreenCapture`, macOS 11+ and is the equivalent of the macOS 11+ `AllowStandardUserToSetSystemService` key.
+
+The `tcc_apple_events` condition additionally returns the `AEReceiverIdentifier` if it exists. For example:
+```
+allow,org.example.foo,/Applications/Microsoft Remote Desktop.app
+```
+- Generates twenty-one conditions:
+- - `tcc_accessibility` 
+- - `tcc_address_book`
+- - `tcc_apple_events`
+- - `tcc_calendar`
+- - `tcc_camera`
+- - `tcc_file_provider_presence`
+- - `tcc_listen_event`
+- - `tcc_media_library`
+- - `tcc_microphone`
+- - `tcc_photos`
+- - `tcc_post_event`
+- - `tcc_reminders`
+- - `tcc_screen_capture`
+- - `tcc_speech_recognition`
+- - `tcc_all_files`
+- - `tcc_desktop_folder`
+- - `tcc_documents_folder`
+- - `tcc_downloads_folder`
+- - `tcc_network_volumes`
+- - `tcc_removable_volumes`
+- - `tcc_sys_admin_files`
 - Usage (on their own or combine):
-- - `ANY pppcp_payloads == 'com.apple.Terminal'`
-- - `ANY pppcp_payloads == '/usr/sbin/installer'`
+- - `ANY tcc_all_files == 'allow,com.apple.Terminal'`
+- - `ANY tcc_screen_capture == 'allow_user,us.zoom.xos'`
+- - `ANY tcc_desktop_folder == 'deny,us.zoom.xos'`
+- - `ANY tcc_apple_events == 'allow,net.pulsesecure.Pulse-Secure,net.pulsesecure.Pulse-Secure'`
 
 ### com.github.carlashley.munkicon.python.py
 Useful in determing basic version information about various Python versions.
