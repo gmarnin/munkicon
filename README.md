@@ -108,14 +108,14 @@ allow,org.example.foo,/Applications/Microsoft Remote Desktop.app
 - - `ANY tcc_apple_events == 'allow,net.pulsesecure.Pulse-Secure,net.pulsesecure.Pulse-Secure'`
 
 ### com.github.carlashley.munkicon.python.py
-Useful in determing basic version information about various Python versions.
+Useful in determining basic version information about various Python versions.
 - Generates six conditions:
 - - `mac_os_python_path` is the real path (symlinks followed) of the Python framework that ships with macOS.
 - - `mac_os_python_ver` is the version string of the Python framework that ships with macOS.
 - - `munki_python_path`is the real path (symlinks followed) of the Python framework used by munki.
 - - `munki_python_symlink` is the symlink path of the Python framework used by munki.
 - - `munki_python_ver` is the version string of the Python framework used by munki.
-- - `official_python3_path` is the real path (symlinks followed) of the offical Python framework installation.
+- - `official_python3_path` is the real path (symlinks followed) of the official Python framework installation.
 - - `official_python3_ver` is the version string of the official Python framework installation.
 - Usage (on their own or combine):
 - - `mac_os_python_path == '/usr/bin/python'`
@@ -169,8 +169,8 @@ Useful for obtaining various bits of system setup information.
 - - `wake_on_lan == FALSE`
 
 ### com.github.carlashley.munkicon.user-accounts.py
-Useful in determining if a package in a manifest should be made available based on whether a local user account exists on a client. For example, customised profile settings for a local user should only be installed if that user exists.
+Useful in determining if a package in a manifest should be made available based on whether a local user account exists on a client. For example, customized profile settings for a local user should only be installed if that user exists.
 - Generates one condition:
-- - `user_home_path` that contains an array of username and home path locations (as a comma seperated string) for _local_ accounts only (ignoring all inbuilt accounts except for `root`). This combination is used as home paths do not necessarily have the username forming part of the path.
+- - `user_home_path` that contains an array of username and home path locations (as a comma separated string) for _local_ accounts only (ignoring all inbuilt accounts except for `root`). This combination is used as home paths do not necessarily have the username forming part of the path.
 - Usage (on their own or combine):
 - - `ANY user_home_path == 'administrator,/Users/admin'`
