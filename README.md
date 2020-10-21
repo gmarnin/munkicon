@@ -110,12 +110,13 @@ allow,org.example.foo,/Applications/Microsoft Remote Desktop.app
 ### com.github.carlashley.munkicon.python.py
 Useful in determing basic version information about various Python versions.
 - Generates six conditions:
-- - `mac_os_python_path` is the real path (symlinks followed) of the Python that ships with macOS.
-- - `mac_os_python_ver` is the version string of the Python that ships with macOS.
-- - `munki_python_path`is the real path (symlinks followed) of the Python used by munki.
-- - `munki_python_ver` is the version string of the Python used by munki.
-- - `official_python3_path` is the real path (symlinks followed) of the offical Python installation.
-- - `official_python3_ver` is the version string of the official Python installation.
+- - `mac_os_python_path` is the real path (symlinks followed) of the Python framework that ships with macOS.
+- - `mac_os_python_ver` is the version string of the Python framework that ships with macOS.
+- - `munki_python_path`is the real path (symlinks followed) of the Python framework used by munki.
+- - `munki_python_symlink` is the symlink path of the Python framework used by munki.
+- - `munki_python_ver` is the version string of the Python framework used by munki.
+- - `official_python3_path` is the real path (symlinks followed) of the offical Python framework installation.
+- - `official_python3_ver` is the version string of the official Python framework installation.
 - Usage (on their own or combine):
 - - `mac_os_python_path == '/usr/bin/python'`
 - - `mac_os_python_ver BEGINSWITH '2.7'`
